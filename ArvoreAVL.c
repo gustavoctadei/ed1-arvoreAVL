@@ -73,7 +73,21 @@ int vazia(Arvore *raiz){
     return 0;
 }
 
-int altura(Arvore *raiz);
+int altura(Arvore *raiz){
+    if (raiz == NULL) return 0;
+    if (*raiz == NULL) return 0;
+
+    int alturaEsq = altura( &((*raiz)->esq) );
+    int alturaDir = altura( &((*raiz)->dir) );
+
+    if (alturaEsq > alturaDir){
+        return alturaEsq + 1;
+    }
+
+    else{
+        return alturaDir + 1;
+    }
+}
 
 int totalNo(Arvore *raiz){
     if (raiz == NULL) return 0;
@@ -85,10 +99,61 @@ int totalNo(Arvore *raiz){
     return (alturaEsq + alturaDir + 1);
 }
 
-int buscaNo(Arvore *raiz, int valor);
+int buscaNo(Arvore *raiz, int valor){
+    if (raiz == NULL) return 0;
 
-void exibePreOrdem(Arvore *raiz);
+    struct NO* atual = *raiz;
 
-void exibeInOrdem(Arvore *raiz);
+    while (atual != NULL){
+        if (atual->info == valor){
+            printf("Encontrou!\n");
+            printf("No -> Valor: %d\n", (*raiz)->info));
+            return 1;
+        }
 
-void exibePosOrdem(Arvore *raiz);
+        else if (atual->info < valor){
+            atual = atual->dir;
+        }
+
+        else {
+            atual = atual->esq;
+        }
+    }
+
+    printf("Nao Encontrou.\n");,
+    return 0;
+}
+
+void exibePreOrdem(Arvore *raiz){
+    if (raiz == NULL) return;
+
+    if (*raiz != NULL){
+        printf("No -> Valor: %d\n", (*raiz)->info));
+
+        exibePreOrdem( &((*raiz)->esq) );
+        exibePreOrdem( &((*raiz)->dir) );
+    }
+}
+
+void exibeInOrdem(Arvore *raiz){
+    if (raiz == NULL) return;
+
+    if (*raiz != NULL){
+        exibeInOrdem( &((*raiz)->esq) );
+
+        printf("No -> Valor: %d\n", (*raiz)->info));
+
+        exibeInOrdem( &((*raiz)->dir) );
+    }
+}
+
+void exibePosOrdem(Arvore *raiz){
+    if (raiz == NULL) return;
+
+    if (*raiz != NULL){
+        exibePosOrdem( &((*raiz)->esq) );
+        exibePosOrdem( &((*raiz)->esq) );
+
+        printf("No -> Valor: %d\n", (*raiz)->info));
+    }
+}
