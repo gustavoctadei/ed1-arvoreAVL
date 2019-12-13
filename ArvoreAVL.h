@@ -28,6 +28,9 @@ int totalNo(Arvore *raiz);
 //Busca um Nó na Árvore
 int buscaNo(Arvore *raiz, int valor);
 
+//Busca um Nó na Árvore e Exibe a Altura
+int buscaAlturaNo(Arvore *raiz, int valor);
+
 //Exibe toda a Árvore Pré Ordem
 void exibePreOrdem(Arvore *raiz);
 

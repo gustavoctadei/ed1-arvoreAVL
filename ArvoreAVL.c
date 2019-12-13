@@ -158,6 +158,31 @@ int buscaNo(Arvore *raiz, int valor){
     return 0;
 }
 
+int buscaAlturaNo(Arvore *raiz, int valor){
+    if (raiz == NULL) return 0;
+
+    struct NO* atual = *raiz;
+
+    while (atual != NULL){
+        if (atual->info == valor){
+            printf("Encontrou!\n");
+            printf("No -> Valor: %d | Altura: %d\n", (*raiz)->info, alturaNo(*raiz));
+            return 1;
+        }
+
+        else if (atual->info < valor){
+            atual = atual->dir;
+        }
+
+        else {
+            atual = atual->esq;
+        }
+    }
+
+    printf("Nao Encontrou.\n");
+    return 0;
+}
+
 void exibePreOrdem(Arvore *raiz){
     if (raiz == NULL) return;
 
